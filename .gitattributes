@@ -1,0 +1,7 @@
+# Preserva os bytes originais da base: sem conversao de fim de linha no checkout,
+# para que o dado seja identico em qualquer maquina do grupo.
+*.csv -text
+*.names -text
+
+# Notebooks: evita que o Git tente mesclar JSON automaticamente.
+*.ipynb -merge
