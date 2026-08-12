@@ -12,17 +12,34 @@ QUALITY_THRESHOLD = 7
 TARGET = "high_quality"
 
 
-def load_raw(filename="WineQT.csv", sep=","):
+# Os arquivos originais do UCI usam ponto-e-virgula como separador.
+DEFAULT_FILE = "winequality-red.csv"
+
+
+def load_raw(filename=DEFAULT_FILE, sep=";"):
     """Le o CSV original em data/raw e devolve o DataFrame sem alteracoes."""
     path = RAW_DIR / filename
     if not path.exists():
         raise FileNotFoundError(
             f"Arquivo nao encontrado: {path}\n"
-            "Baixe o Wine Quality Dataset do Kaggle e salve em data/raw/."
+            "Veja data/raw/README.md para as bases disponiveis."
         )
     df = pd.read_csv(path, sep=sep)
-    # Algumas versoes do dataset trazem uma coluna 'Id' que nao e preditiva.
+    # A republicacao do Kaggle (WineQT.csv) traz uma coluna 'Id' que nao e preditiva.
     return df.drop(columns=["Id"], errors="ignore")
+
+
+def load_both(sep=";"):
+    """Carrega tinto e branco em uma base unica, com a coluna 'type' identificando a origem.
+
+    Usar apenas se o grupo decidir analisar os dois juntos - nesse caso 'type' vira
+    uma feature legitima e precisa ser justificada na apresentacao.
+    """
+    red = load_raw("winequality-red.csv", sep)
+    white = load_raw("winequality-white.csv", sep)
+    red["type"] = 0   # tinto
+    white["type"] = 1  # branco
+    return pd.concat([red, white], ignore_index=True)
 
 
 def add_binary_target(df, threshold=QUALITY_THRESHOLD):

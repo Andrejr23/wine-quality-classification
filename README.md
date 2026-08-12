@@ -32,10 +32,20 @@ Desenvolver e comparar modelos de **classificação binária** que prevejam:
 
 ## 3. Dataset
 
-- **Fonte:** [Wine Quality Dataset — Kaggle](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset)
-- **Arquivo utilizado:** `data/raw/WineQT.csv` *(preencher se usarem outro)*
-- **Registros:** _a preencher_
+- **Fonte:** [Wine Quality — UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/186/wine+quality),
+  base primária da qual o *Wine Quality Dataset* do Kaggle é uma republicação.
+- **Arquivos versionados:** `data/raw/winequality-red.csv` e `data/raw/winequality-white.csv`
+  (separador `;` — o `data_loader` já trata)
+- **Base padrão do código:** tinto — **1.599 registros**, dos quais **217 (13,6%)** são de alta qualidade
 - **Variável alvo original:** `quality` (nota de 0 a 10 atribuída por especialistas)
+
+| Base | Registros | Alta qualidade (≥ 7) |
+|---|---|---|
+| Tinto (`winequality-red.csv`) | 1.599 | 217 — 13,6% |
+| Branco (`winequality-white.csv`) | 4.898 | 1.060 — 21,6% |
+
+> **Decisão pendente da equipe:** qual base será usada na análise final. Ver
+> [`data/raw/README.md`](data/raw/README.md) para as três opções e como o código muda em cada caso.
 
 ### Variáveis
 
@@ -54,9 +64,9 @@ Desenvolver e comparar modelos de **classificação binária** que prevejam:
 | `alcohol` | Teor alcoólico |
 | `quality` | Nota de qualidade (**alvo**) |
 
-> ⚠️ O dataset de vinhos existe em duas versões públicas (tinto ≈1.599 linhas, branco ≈4.898).
-> **Documentar aqui qual foi usada** — e, se as duas forem combinadas, registrar a criação da
-> feature `type`.
+Para analisar as duas bases juntas, use `data_loader.load_both()` — ele concatena tinto e branco
+criando a coluna `type` (0 = tinto, 1 = branco). Isso conta como feature engineering e precisa
+ser justificado na apresentação.
 
 ## 4. Estrutura do repositório
 
@@ -95,7 +105,8 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
-Baixe o CSV do Kaggle e coloque em `data/raw/`. Execute os notebooks na ordem `01` → `02` → `03`.
+A base já está versionada em `data/raw/` — não é preciso baixar nada. Execute os notebooks na
+ordem `01` → `02` → `03`.
 
 ## 6. Metodologia
 
