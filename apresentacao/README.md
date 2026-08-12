@@ -1,5 +1,26 @@
 # Apresentação executiva e vídeo
 
+## Arquivo pronto para editar
+
+**[`Apresentacao_Executiva_Wine_Quality.pptx`](Apresentacao_Executiva_Wine_Quality.pptx)** —
+12 slides já montados seguindo o roteiro abaixo, com os dois gráficos nativos do PowerPoint
+(editáveis: clique com o botão direito → *Editar Dados*).
+
+O que precisa ser preenchido antes da entrega:
+
+| Slide | O que substituir |
+|---|---|
+| 1 | Nomes dos 5 integrantes |
+| 4 | Número real de amostras da base escolhida |
+| 5 | Percentuais reais do balanceamento (gráfico + o "1 em cada 7") |
+| 6 | Correlações reais com a nota (gráfico) |
+| 8 | Os 4 coeficientes de correlação |
+| 10 | As três métricas do modelo escolhido |
+| 11 | Ajustar as recomendações conforme as variáveis realmente influentes |
+
+Todos os slides já têm **anotações do apresentador** com a orientação de fala e o tempo
+correspondente no vídeo (aba *Anotações* no PowerPoint).
+
 ## O que vai aqui
 
 1. **Apresentação executiva** em PPT ou PDF, com o *storytelling da análise exploratória*.
